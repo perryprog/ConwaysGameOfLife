@@ -65,10 +65,8 @@ public class MainBoard {
             @Override
             public void paint(Graphics g) {
                 super.paint(g);
-                //g.setColor(new Color(randColor.nextInt(255) + 1, randColor.nextInt(255) + 1, randColor.nextInt(255) + 1));
-                //g.drawString("your ma", 10, 10);
-                //g.fillRect(10, 10, cellSize, cellSize);
-                initializeBoard();
+                //initializeBoard();
+                invert();
                 _PaintGrid(g);
             }
         };
@@ -136,6 +134,22 @@ public class MainBoard {
             for (boolean cell : rowCells) {
 
                 cells[row][col] = random.nextBoolean();
+
+                ++col;
+            }
+
+            ++row;
+        }
+    }
+
+    private void invert() {
+        int row = 0;
+        for (boolean[] rowCells : cells) {
+
+            int col = 0;
+            for (boolean cell : rowCells) {
+
+                cells[row][col] = !cells[row][col];
 
                 ++col;
             }
