@@ -8,21 +8,27 @@ public class MainBoard {
     private int boardWidth;
     private int cellSize;
 
+    private boolean isWhiteAlive;
+
     private JFrame jFrame;
     private JPanel jPanel;
 //    private List<JPanel> jPanelArrayList = new ArrayList<>();
 
-    private boolean[][] cells;
+    private boolean[][] currentCells;
+    private boolean[][] cellsBackup;
 
-    public MainBoard(int boardHeight, int boardWidth, int cellSize) {
+    public MainBoard(int boardHeight, int boardWidth, int cellSize, boolean isWhiteAlive) {
         this.boardHeight = boardHeight;
         this.boardWidth = boardWidth;
         this.cellSize = cellSize;
+        this.isWhiteAlive = isWhiteAlive;
 
-        cells = new boolean[boardHeight][boardWidth];
+        currentCells = new boolean[boardHeight][boardWidth];
+        cellsBackup = new boolean[boardHeight][boardWidth];
 
-//        cells[0][0] = true;
-//        cells[4][8] = true;
+
+//        currentCells[0][0] = true;
+//        currentCells[4][8] = true;
         initializeBoard();
     }
 
@@ -66,7 +72,6 @@ public class MainBoard {
             public void paint(Graphics g) {
                 super.paint(g);
                 //initializeBoard();
-                invert();
                 _PaintGrid(g);
             }
         };
@@ -109,52 +114,89 @@ public class MainBoard {
 
     private void _PaintGrid(Graphics g) {
 
-        int row = 0;
-        for (boolean[] rowCells : cells) {
+        for (int col = 0; col < boardHeight; col++) {
+            for (int row = 0; row < boardWidth; row++) {
+                if (isWhiteAlive) {
+                    g.setColor(currentCells[row][col] ? Color.WHITE : Color.BLACK);
+                } else {
+                    g.setColor(currentCells[row][col] ? Color.BLACK : Color.WHITE);
 
-            int col = 0;
-            for (boolean cell : rowCells) {
-
-                g.setColor(cell ? Color.WHITE : Color.BLACK);
-
+                }
                 g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
-                ++col;
-            }
 
-            ++row;
+            }
         }
     }
 
     public void initializeBoard() {
-        int row = 0;
         Random random = new Random();
-        for (boolean[] rowCells : cells) {
 
-            int col = 0;
-            for (boolean cell : rowCells) {
-
-                cells[row][col] = random.nextBoolean();
-
-                ++col;
+        for (int col = 0; col < boardHeight; col++) {
+            for (int row = 0; row < boardWidth; row++) {
+                currentCells[row][col] = random.nextBoolean();
             }
-
-            ++row;
         }
     }
 
-    private void invert() {
-        int row = 0;
-        for (boolean[] rowCells : cells) {
+    public void conwaysCheker() {
+        cellsBackup = currentCells;
+        currentCells = new boolean[boardHeight][boardWidth];
 
-            int col = 0;
-            for (boolean cell : rowCells) {
+        for (int row = 0; row < boardHeight; row++) {
+            for (int col = 0; col < boardWidth; col++) {
 
-                cells[row][col] = !cells[row][col];
+                int aliveNeighbors = 0;
 
-                ++col;
+                try {
+//                    currentCells[row][col] = cellsBackup[row][col - 1] && cellsBackup[row][col + 1];
+                    if (cellsBackup[row - 1][col - 1]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row - 1][col]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row - 1][col + 1]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row][col - 1]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row][col + 1]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row + 1][col - 1]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row + 1][col]) {
+                        aliveNeighbors++;
+                    }
+                    if (cellsBackup[row + 1][col + 1]) {
+                        aliveNeighbors++;
+                    }
+
+
+                    if (cellsBackup[row][col]) {
+                        if (aliveNeighbors < 2) {
+                            currentCells[row][col] = false;
+                        }
+                        if (aliveNeighbors == 2 || aliveNeighbors == 3) {
+                            currentCells[row][col] = true;
+                        }
+                        if (aliveNeighbors > 3) {
+                            currentCells[row][col] = false;
+                        }
+                    } else {
+                        if (aliveNeighbors == 3) {
+                            currentCells[row][col] = true;
+                        }
+                    }
+                } catch (ArrayIndexOutOfBoundsException err) {
+                    //log("Ignoring Error Message -> " + err.toString());
+                    cellsBackup[row][col] = false;
+                }
             }
-
-            ++row;
         }
+
+        jPanel.repaint();
     }
 }
