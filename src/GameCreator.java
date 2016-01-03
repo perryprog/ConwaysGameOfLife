@@ -8,13 +8,12 @@ public class GameCreator {
         String cellSize = JOptionPane.showInputDialog(null, "What is the cell height?");
         String whiteIsAlive = JOptionPane.showInputDialog(null, "Should white be alive? (true/false)");
 
-
         MainBoard mainBoard = new MainBoard(Integer.parseInt(boardHeight), Integer.parseInt(boardWidth), Integer.parseInt(cellSize), Boolean.parseBoolean(whiteIsAlive));
 //        MainBoard mainBoard = new MainBoard(200, 200, 10, false);
 
         mainBoard.makeFrames().
                 genPanel().
-                addComponent(new JLabel("SUP DAWG")).
+                addComponent(new JLabel("SUP DAG")).
                 init().
                 showFrame();
 
@@ -24,6 +23,7 @@ public class GameCreator {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                break;
             }
         }
     }
