@@ -11,7 +11,7 @@ To run in a terminal do
 cd /Path/to/root/folder/of/program/out/production/ConwaysGameOfLife; java GameCreator;
 ```
 
-**NEW** OS X only! (I don't do windows) run ./run.sh and it will run. :smile:
+**NEW** OS X only! (I don't do windows) run `./run.sh` and it will run. :smile:
 
 # Using
 
