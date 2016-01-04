@@ -12,7 +12,6 @@ public class MainBoard {
 
     private JFrame jFrame;
     private JPanel jPanel;
-//    private List<JPanel> jPanelArrayList = new ArrayList<>();
 
     private boolean[][] currentCells;
     private boolean[][] cellsBackup;
@@ -27,8 +26,6 @@ public class MainBoard {
         cellsBackup = new boolean[boardHeight][boardWidth];
 
 
-//        currentCells[0][0] = true;
-//        currentCells[4][8] = true;
         initializeBoard();
     }
 
@@ -102,6 +99,8 @@ public class MainBoard {
 
                 }
                 g.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+//              g.drawOval(col * cellSize, row * cellSize, cellSize, cellSize);
+//                g.fillOval(col * cellSize, row * cellSize, cellSize, cellSize);
 
             }
         }
@@ -117,7 +116,7 @@ public class MainBoard {
         }
     }
 
-    public void conwaysCheker() {
+    public void conwayChecker() {
         cellsBackup = currentCells;
         currentCells = new boolean[boardHeight][boardWidth];
 
@@ -171,7 +170,7 @@ public class MainBoard {
                     }
                 } catch (ArrayIndexOutOfBoundsException err) {
                     //log("Ignoring Error Message -> " + err.toString());
-                    cellsBackup[row][col] = false;
+                    currentCells[row][col] = false;
                 }
             }
         }

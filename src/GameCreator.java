@@ -7,6 +7,7 @@ public class GameCreator {
         String boardWidth = JOptionPane.showInputDialog(null, "What is the board height?");
         String cellSize = JOptionPane.showInputDialog(null, "What is the cell height?");
         String whiteIsAlive = JOptionPane.showInputDialog(null, "Should white be alive? (true/false)");
+        String timeToWait = JOptionPane.showInputDialog(null, "Time to wait in between cycles (ms)");
 
         MainBoard mainBoard = new MainBoard(Integer.parseInt(boardHeight), Integer.parseInt(boardWidth), Integer.parseInt(cellSize), Boolean.parseBoolean(whiteIsAlive));
 //        MainBoard mainBoard = new MainBoard(200, 200, 10, false);
@@ -18,9 +19,9 @@ public class GameCreator {
                 showFrame();
 
         while (true) {
-            mainBoard.conwaysCheker();
+            mainBoard.conwayChecker();
             try {
-                Thread.sleep(50);
+                Thread.sleep(Integer.parseInt(timeToWait));
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
