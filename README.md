@@ -6,7 +6,7 @@ Conway's Game Of Life In Java.
 
 # Running
 
-To run in the shell do 
+To run in a terminal do 
 ```Shell 
 cd /Path/to/root/folder/of/program/out/production/ConwaysGameOfLife; java GameCreator;
 ```
