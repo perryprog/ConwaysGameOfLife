@@ -32,21 +32,6 @@ public class MainBoard {
         initializeBoard();
     }
 
-    public int getBoardHeight() {
-        return boardHeight;
-    }
-
-    public void setBoardHeight(int boardHeight) {
-        this.boardHeight = boardHeight;
-    }
-
-    public int getBoardWidth() {
-        return boardWidth;
-    }
-
-    public void setBoardWidth(int boardWidth) {
-        this.boardWidth = boardWidth;
-    }
 
     public MainBoard makeFrames() {
         log("Generating Frame...");
@@ -57,14 +42,8 @@ public class MainBoard {
         return this;
     }
 
-//    public void genGui() {
-//        JButton jButton = new JButton("Reset")
-//    }
-
     public MainBoard genPanel() {
         log("Generating Panel...");
-
-        final Random randColor = new Random();
 
 
         jPanel = new JPanel() {
