@@ -10,7 +10,6 @@ public class GameCreator {
         String timeToWait = JOptionPane.showInputDialog(null, "Time to wait in between cycles (ms)");
 
         MainBoard mainBoard = new MainBoard(Integer.parseInt(boardHeight), Integer.parseInt(boardWidth), Integer.parseInt(cellSize), Boolean.parseBoolean(whiteIsAlive));
-//        MainBoard mainBoard = new MainBoard(200, 200, 10, false);
 
         mainBoard.makeFrames().
                 genPanel().
