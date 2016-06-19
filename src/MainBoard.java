@@ -36,6 +36,19 @@ public class MainBoard {
         jFrame.setSize(boardWidth * cellSize, boardHeight * cellSize);
         log("Done!");
 
+        log("Generating Panel...");
+
+
+        jPanel = new JPanel() {
+            @Override
+            public void paint(Graphics g) {
+                super.paint(g);
+                //initializeBoard();
+                _PaintGrid(g);
+            }
+        };
+        log("Done!");
+
         return this;
     }
 
@@ -64,6 +77,9 @@ public class MainBoard {
         log("Adding Panels...");
         jFrame.add(jPanel);
         log("Done!");
+
+        jFrame.setVisible(true);
+        log("Frame Visible!");
 
         return this;
     }

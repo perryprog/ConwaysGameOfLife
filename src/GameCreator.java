@@ -11,11 +11,10 @@ public class GameCreator {
 
         MainBoard mainBoard = new MainBoard(Integer.parseInt(boardHeight), Integer.parseInt(boardWidth), Integer.parseInt(cellSize), Boolean.parseBoolean(whiteIsAlive));
 
-        mainBoard.makeFrames().
-                genPanel().
-                addComponent(new JLabel("SUP DAG")).
-                init().
-                showFrame();
+        mainBoard
+                .makeFrames()
+                .addComponent(new JLabel("SUP DAG"))
+                .init();
 
         while (true) {
             mainBoard.conwayChecker();
