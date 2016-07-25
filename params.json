@@ -1,0 +1,6 @@
+{
+  "name": "Conwaysgameoflife",
+  "tagline": "Conway's Game Of Life In Java.",
+  "body": "# ConwaysGameOfLife\r\nConway's Game Of Life In Java.\r\n\r\n\r\n:smile:\r\n\r\n# Running\r\n\r\nTo run in a terminal do \r\n```Shell \r\ncd /Path/to/root/folder/of/program/out/production/ConwaysGameOfLife; java GameCreator;\r\n```\r\n\r\n**NEW** OS X only! (I don't do windows) run `./run.sh` and it will run. :smile:\r\n\r\n# Using\r\n\r\nWhen you first start it up it will give you a few prompts. The first three should be numbers. If you make a mistake it will crash. I was just to lazy to add a try catch. The forth prombt you must type in either true or false. That is all. :bowtie:\r\n\r\nNow have some cake. :birthday: :birthday: :birthday: :birthday: :birthday:\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
